@@ -3,7 +3,7 @@
 # 2. Build image: docker build -f Dockerfile -t chuic456/emacs:latest .
 # 3. Install XQuartz, download link: https://www.xquartz.org/
 # 4. Before run container, start XQuartz and run: xhost +
-# 5. Run container: docker run -it --rm -v /tmp/.X11-unix:/tmp/.X11-unix chuic456/emacs
+# 5. Run container: docker run -it --name emacs --privileged -v /tmp/.X11-unix:/tmp/.X11-unix chuic456/emacs
 
 FROM debian:bullseye
 LABEL author=chuic456
