@@ -1,9 +1,8 @@
 # Usage in macos:
-# 1. Change below DISPLAY environment variable definition as $(IP):0
-# 2. Build image: docker build -f Dockerfile -t chuic456/emacs:latest .
-# 3. Install XQuartz, download link: https://www.xquartz.org/
-# 4. Before run container, start XQuartz and run: xhost +
-# 5. Run container: docker run -it --name emacs --privileged -v /tmp/.X11-unix:/tmp/.X11-unix chuic456/emacs
+# 1. Build image: docker build -f Dockerfile -t chuic456/emacs:latest .
+# 2. Install XQuartz, download link: https://www.xquartz.org/
+# 3. Before run container, start XQuartz and run: xhost +
+# 4. Run container: docker run -it --name emacs --privileged -e DISPLAY=$ip:0 -v /tmp/.X11-unix:/tmp/.X11-unix chuic456/emacs
 
 FROM debian:bullseye
 LABEL author=chuic456
@@ -25,7 +24,5 @@ RUN rm -rf /root/.emacs.d
 COPY ./_cc_build/.emacs.d /root/.emacs.d
 COPY ./_cc_build/xah-fly-keys /root/.emacs.d/site-lisp/xah-fly-keys
 COPY ./_cc_build/xah-elisp-mode /root/.emacs.d/site-lisp/xah-elisp-mode
-
-ENV DISPLAY=192.168.31.160:0
 
 ENTRYPOINT ["emacs"]
