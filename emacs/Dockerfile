@@ -18,7 +18,7 @@ RUN apt -y build-dep emacs
 RUN apt -y install libgccjit0 libgccjit-10-dev
 
 COPY ./_cc_build/emacs /root/emacs
-RUN cd /root/emacs/ && ./autogen.sh && ./configure --with-pop --with-mailutils --with-native-compilation && make -j$(nproc) && make install
+RUN cd /root/emacs/ && ./autogen.sh && ./configure --with-pop --with-mailutils --with-json --with-native-compilation=aot --with-tree-sitter && make -j$(nproc) && make install
 
 RUN rm -rf /root/.emacs.d
 COPY ./_cc_build/.emacs.d /root/.emacs.d
